@@ -13,25 +13,32 @@ export default class BabyHog extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      weight: 10
+      weight: 10,
+      height: 200
     }
   }
 
-  changeWeight = (e) => {
+
+
+  changeWeightAndSize = (e) => {
     // nothing needs to change here
-    let newWeight
+    let newWeight;
+    let newHeight;
     if (e.target.name === "+") {
       newWeight = this.state.weight + 10
+      newHeight = this.state.height + 10
     }
     else if (this.state.weight > 0 && e.target.name === "-") {
       newWeight = this.state.weight - 10
+      newHeight = this.state.height - 10
     }
     else if (this.state.weight === 0) {
       newWeight = this.state.weight
     }
     // const newWeight = e.target.name === "+" ? (this.state.weight + 10) : (this.state.weight - 10)
     this.setState({
-      weight: newWeight
+      weight: newWeight,
+      height: newHeight
     })
   }
 
@@ -59,15 +66,15 @@ export default class BabyHog extends Component {
         <h3>Hobby: {this.props.hobby}</h3>
         <h4>Eye Color: {this.props.eyeColor}</h4>
 
-        <Button name="+" onClick={this.changeWeight}>
+        <Button name="+" onClick={this.changeWeightAndSize}>
           Increase Weight
         </Button>
-        <Button name="-" onClick={this.changeWeight}>
+        <Button name="-" onClick={this.changeWeightAndSize}>
           Decrease Weight
         </Button>
 
         <div className="hb-wrap">
-          <img src={this.babyPics()} style={{height: '200px'}} alt="MasterBlasterJrJr" />
+          <img src={this.babyPics()} style={{height: `${this.state.height}px`}} alt="MasterBlasterJrJr" />
         </div>
 
       </li>
